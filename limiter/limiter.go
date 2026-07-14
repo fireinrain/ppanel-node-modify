@@ -140,7 +140,7 @@ func (l *Limiter) CheckLimit(taguuid string, ip string, noUDPSource bool) (Bucke
 	} else {
 		return nil, true
 	}
-	if noUDPSource {
+	if noUDPSource || l.NodeType == "hysteria" || l.NodeType == "hysteria2" || l.NodeType == "tuic" {
 		// Store online user for device limit
 		ipMap := new(sync.Map)
 		ipMap.Store(ip, uid)
